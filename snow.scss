@@ -1,0 +1,36 @@
+html, body {
+   
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#123, #111);
+  }
+  
+  .snowflake {
+    --size: 3px;
+    width: var(--size);
+    height: var(--size);
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+  }
+  
+  @keyframes snowfall {
+    0% {
+      transform: translate3d(var(--left-ini), 0, 0);
+    }
+    100% {
+      transform: translate3d(var(--left-end), 50px, 0);
+    }
+  }
+  
+  @for $i from 1 through 18 {
+    .snowflake:nth-child(#{$i}) {
+      --size: #{random(5) * 0.2}px;
+      --left-ini: #{random(20) - 10}px;
+      --left-end: #{random(20) - 10}px;
+      left: #{random(100)}px;
+      animation: snowfall #{5 + random(10)}s linear infinite;
+      animation-delay: -#{random(10)}s;
+    }
+  }
